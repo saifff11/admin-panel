@@ -38,7 +38,17 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-6">
+    <div
+      className="
+    tw-grid 
+    tw-grid-cols-1 
+    sm:tw-grid-cols-2 
+    lg:tw-grid-cols-3 
+    [@media(min-width:1286px)]:tw-grid-cols-4 
+    tw-gap-x-6 
+    tw-gap-y-6
+  "
+    >
       <StatCard
         title="Active Users Today"
         value={formatValue(stats.activeUsers.value)}

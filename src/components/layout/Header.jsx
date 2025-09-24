@@ -15,19 +15,19 @@ const Header = ({ handleDrawerToggle }) => {
         <IconButton
           color="inherit"
           onClick={handleDrawerToggle}
-          className="md:!tw-hidden"
+          className="max-lg:!tw-block lg:!tw-hidden"
         >
           <MenuIcon />
         </IconButton>
 
         {/* Search Bar */}
-        <div className="tw-flex tw-items-center tw-py-2 tw-px-3 tw-rounded-lg tw-bg-white tw-shadow-sm">
-          <SearchIcon className="tw-text-gray-400" />
+        <div className="tw-relative tw-w-full sm:tw-w-[280px] md:tw-w-[320px] lg:tw-w-[400px]">
           <input
             type="text"
-            placeholder="Search"
-            className="tw-w-[350px] tw-ml-2 focus:tw-outline-none tw-bg-transparent"
+            placeholder="Search..."
+            className="tw-w-full tw-pl-10 tw-pr-3 tw-py-3 tw-rounded-lg tw-border tw-border-gray-300 focus:tw-ring-2 focus:tw-ring-blue-500 focus:tw-outline-none"
           />
+          <SearchIcon className="tw-absolute tw-left-3 tw-top-1/2 -tw-translate-y-1/2 tw-text-gray-400" />
         </div>
 
         {/* Spacer */}

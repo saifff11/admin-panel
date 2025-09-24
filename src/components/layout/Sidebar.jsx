@@ -22,6 +22,8 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import ReportIcon from "@mui/icons-material/Report";
 import SettingsIcon from "@mui/icons-material/Settings";
 
+import { useTheme, useMediaQuery } from "@mui/material";
+
 const navItems = [
   { text: "Dashboard", icon: <DashboardIcon /> },
   { text: "Users", icon: <PeopleIcon /> },
@@ -68,7 +70,9 @@ const DrawerContent = () => (
 );
 
 const Sidebar = ({ isMobileSidebarOpen, handleDrawerToggle }) => {
-  const sidebarWidth = 270;
+  const theme = useTheme();
+  const isDesktop = useMediaQuery("(min-width:1024px)");
+  const sidebarWidth = 260;
 
   return (
     <nav className={`md:tw-w-[${sidebarWidth}px] md:tw-flex-shrink-0`}>
@@ -78,8 +82,8 @@ const Sidebar = ({ isMobileSidebarOpen, handleDrawerToggle }) => {
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
         sx={{
-          display: { xs: "block", md: "none" },
-          "& .MuiDrawer-paper": { width: sidebarWidth },
+          display: isDesktop ? "none" : "block",
+          "& .MuiDrawer-paper": { width: 270 },
         }}
       >
         <DrawerContent />
@@ -89,8 +93,8 @@ const Sidebar = ({ isMobileSidebarOpen, handleDrawerToggle }) => {
         variant="permanent"
         open
         sx={{
-          display: { xs: "none", md: "block" },
-          "& .MuiDrawer-paper": { width: sidebarWidth, borderRight: 0 },
+          display: isDesktop ? "block" : "none",
+          "& .MuiDrawer-paper": { width: 270, borderRight: 0 },
         }}
       >
         <DrawerContent />
