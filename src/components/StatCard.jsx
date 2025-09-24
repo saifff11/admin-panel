@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 
 const StatCard = ({ title, value, icon, trend, trendDirection }) => {
   const isPositive = trendDirection === "up";
@@ -22,9 +22,9 @@ const StatCard = ({ title, value, icon, trend, trendDirection }) => {
         {/* Trend Info */}
         <div className={`tw-flex tw-items-center tw-mt-1 ${trendColor}`}>
           {isPositive ? (
-            <ArrowUpwardIcon className="tw-w-4 tw-h-4" />
+            <TrendingUpIcon className="tw-w-5 tw-h-5" />
           ) : (
-            <ArrowDownwardIcon className="tw-w-4 tw-h-4" />
+            <TrendingDownIcon className="tw-w-5 tw-h-5" />
           )}
           <Typography variant="body2" className="tw-font-semibold tw-ml-1">
             {trend}%

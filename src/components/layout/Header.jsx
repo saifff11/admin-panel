@@ -15,9 +15,9 @@ const Header = ({ handleDrawerToggle }) => {
         <IconButton
           color="inherit"
           onClick={handleDrawerToggle}
-          className="max-lg:!tw-block lg:!tw-hidden"
+          className="lg:!tw-hidden tw-p-3"
         >
-          <MenuIcon />
+          <MenuIcon className="tw-w-8 tw-h-8" />
         </IconButton>
 
         {/* Search Bar */}

@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import StatCard from "../components/StatCard";
-import { getDashboardStats } from "../services/mockApiService";
+import { getDailyMeetups, getDashboardStats, getTrendingCategories } from "../services/mockApiService";
+import CategoriesCard from "../components/CategoriesCard";
 
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
+import DailyMeetupsChart from "../components/charts/DailyMeetupsChart";
+import TrendingCategories from "../components/TrendingCategories";
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
+  const [chartData, setChartData] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getDashboardStats();
+        const [data, meetupsData, categoriesData] = await Promise.all([
+          getDashboardStats(),
+          getDailyMeetups(),
+          getTrendingCategories(),
+        ]);
         setStats(data);
+        setChartData(meetupsData);
+        setCategories(categoriesData);
       } catch (error) {
         console.error("Failed to fetch dashboard stats", error);
       } finally {
@@ -38,45 +49,63 @@ const Dashboard = () => {
   };
 
   return (
-    <div
-      className="
-    tw-grid 
-    tw-grid-cols-1 
-    sm:tw-grid-cols-2 
-    lg:tw-grid-cols-3 
-    [@media(min-width:1286px)]:tw-grid-cols-4 
-    tw-gap-x-6 
-    tw-gap-y-6
-  "
-    >
-      <StatCard
-        title="Active Users Today"
-        value={formatValue(stats.activeUsers.value)}
-        trend={stats.activeUsers.trend}
-        trendDirection={stats.activeUsers.trend >= 0 ? "up" : "down"}
-        icon={<PeopleAltOutlinedIcon />}
-      />
-      <StatCard
-        title="Total Meet-Ups Scheduled"
-        value={formatValue(stats.meetupsScheduled.value)}
-        trend={stats.meetupsScheduled.trend}
-        trendDirection={stats.meetupsScheduled.trend >= 0 ? "up" : "down"}
-        icon={<EventAvailableOutlinedIcon />}
-      />
-      <StatCard
-        title="Revenue This Week"
-        value={`₹${formatValue(stats.revenue.value)}`}
-        trend={stats.revenue.trend}
-        trendDirection={stats.revenue.trend >= 0 ? "up" : "down"}
-        icon={<MonetizationOnOutlinedIcon />}
-      />
-      <StatCard
-        title="Referrals This Week"
-        value={formatValue(stats.referrals.value)}
-        trend={stats.referrals.trend}
-        trendDirection={stats.referrals.trend >= 0 ? "up" : "down"}
-        icon={<HowToRegOutlinedIcon />}
-      />
+    <div className="tw-space-y-6">
+      <div
+        className="
+      tw-grid
+      tw-grid-cols-1
+      sm:tw-grid-cols-2
+      lg:tw-grid-cols-3
+      [@media(min-width:1286px)]:tw-grid-cols-4
+      tw-gap-x-6
+      tw-gap-y-6
+        "
+      >
+        <StatCard
+          title="Active Users Today"
+          value={formatValue(stats.activeUsers.value)}
+          trend={stats.activeUsers.trend}
+          trendDirection={stats.activeUsers.trend >= 0 ? "up" : "down"}
+          icon={<PeopleAltOutlinedIcon />}
+        />
+        <StatCard
+          title="Total Meet-Ups Scheduled"
+          value={formatValue(stats.meetupsScheduled.value)}
+          trend={stats.meetupsScheduled.trend}
+          trendDirection={stats.meetupsScheduled.trend >= 0 ? "up" : "down"}
+          icon={<EventAvailableOutlinedIcon />}
+        />
+        <StatCard
+          title="Revenue This Week"
+          value={`₹${formatValue(stats.revenue.value)}`}
+          trend={stats.revenue.trend}
+          trendDirection={stats.revenue.trend >= 0 ? "up" : "down"}
+          icon={<MonetizationOnOutlinedIcon />}
+        />
+        <StatCard
+          title="Referrals This Week"
+          value={formatValue(stats.referrals.value)}
+          trend={stats.referrals.trend}
+          trendDirection={stats.referrals.trend >= 0 ? "up" : "down"}
+          icon={<HowToRegOutlinedIcon />}
+        />
+      </div>
+      <div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-6">
+        {/* The chart will span 2 columns on large screens */}
+        <div className="lg:tw-col-span-1">
+          <div className="tw-mb-3">
+            <DailyMeetupsChart data={chartData} />
+          </div>
+          <div>
+            <CategoriesCard />
+          </div>
+        </div>
+
+        {/* The categories will span 1 column */}
+        <div className="lg:tw-col-span-1">
+          <TrendingCategories data={categories} />
+        </div>
+      </div>
     </div>
   );
 };

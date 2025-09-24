@@ -39,3 +39,29 @@ export const getUsers = async () => {
     walletBalance: faker.finance.amount({ min: 0, max: 2000, dec: 2 }),
   }));
 };
+
+export const getDailyMeetups = async () => {
+  await sleep(300); // Simulate loading
+  const data = [
+    { day: "Sun", meetups: faker.number.int({ min: 50, max: 100 }) },
+    { day: "Mon", meetups: faker.number.int({ min: 100, max: 180 }) },
+    { day: "Tue", meetups: faker.number.int({ min: 80, max: 150 }) },
+    { day: "Wed", meetups: faker.number.int({ min: 180, max: 240 }) },
+    { day: "Thu", meetups: faker.number.int({ min: 160, max: 220 }) },
+    { day: "Fri", meetups: faker.number.int({ min: 220, max: 280 }) },
+    { day: "Sat", meetups: faker.number.int({ min: 150, max: 200 }) },
+  ];
+  return data;
+};
+
+export const getTrendingCategories = async () => {
+  await sleep(200);
+  const categories = [
+    { name: "Tea", value: 90 },
+    { name: "Walk", value: 85 },
+    { name: "Lifestyle", value: 80 },
+    { name: "Party", value: 75 },
+    { name: "Study", value: 70 },
+  ];
+  return categories;
+};

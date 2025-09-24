@@ -31,7 +31,7 @@ const AdminLayout = () => {
         }} // dynamic margin
       >
         <Header handleDrawerToggle={handleDrawerToggle} />
-        <main className="tw-flex-1 tw-p-6 tw-overflow-y-auto">
+        <main className="tw-flex-1 tw-p-6">
           <Outlet />
         </main>
       </div>
