@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import StatCard from "../components/StatCard";
-import { getDailyMeetups, getDashboardStats, getTrendingCategories } from "../services/mockApiService";
+import { getDailyMeetups, getDashboardStats, getTrendingCategories, getUserDistribution } from "../services/mockApiService";
 import CategoriesCard from "../components/CategoriesCard";
 
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
@@ -10,24 +10,28 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
 import DailyMeetupsChart from "../components/charts/DailyMeetupsChart";
 import TrendingCategories from "../components/TrendingCategories";
+import UserDistributionChart from "../components/charts/UserDistributionChart";
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [chartData, setChartData] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [distributionData, setDistributionData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [data, meetupsData, categoriesData] = await Promise.all([
+        const [data, meetupsData, categoriesData, distribution] = await Promise.all([
           getDashboardStats(),
           getDailyMeetups(),
           getTrendingCategories(),
+          getUserDistribution(),
         ]);
         setStats(data);
         setChartData(meetupsData);
         setCategories(categoriesData);
+        setDistributionData(distribution);
       } catch (error) {
         console.error("Failed to fetch dashboard stats", error);
       } finally {
@@ -105,6 +109,9 @@ const Dashboard = () => {
         <div className="lg:tw-col-span-1">
           <TrendingCategories data={categories} />
         </div>
+      </div>
+      <div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-6">
+        <UserDistributionChart data={distributionData} />
       </div>
     </div>
   );

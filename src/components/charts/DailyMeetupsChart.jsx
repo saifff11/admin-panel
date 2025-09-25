@@ -32,7 +32,7 @@ const DailyMeetupsChart = ({ data }) => {
               dataKey="meetups"
               stroke="#16a34a"
               strokeWidth={3}
-              dot={{ r: 6 }}
+              dot={{ r: 4 }}
             />
           </LineChart>
         </ResponsiveContainer>

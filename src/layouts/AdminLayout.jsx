@@ -17,7 +17,7 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="tw-flex tw-h-screen tw-bg-gray-100">
+    <div className="tw-flex tw-h-full tw-bg-gray-100">
       <Sidebar
         isMobileSidebarOpen={isMobileSidebarOpen}
         handleDrawerToggle={handleDrawerToggle}

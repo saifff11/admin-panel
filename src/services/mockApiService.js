@@ -65,3 +65,14 @@ export const getTrendingCategories = async () => {
   ];
   return categories;
 };
+
+export const getUserDistribution = async () => {
+  await sleep(150);
+  const data = [
+    { name: "Male", value: 450, users: 450, color: "#3b82f6" },
+    { name: "Female", value: 350, users: 350, color: "#ec4899" },
+    { name: "Non-Binary", value: 150, users: 150, color: "#a855f7" },
+    { name: "Unspecified", value: 50, users: 50, color: "#a1a1aa" },
+  ];
+  return data;
+};

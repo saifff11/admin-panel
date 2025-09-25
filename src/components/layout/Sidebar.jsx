@@ -24,6 +24,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 import { useTheme, useMediaQuery } from "@mui/material";
 
+import { NavLink } from "react-router-dom";
+
 const navItems = [
   { text: "Dashboard", icon: <DashboardIcon /> },
   { text: "Users", icon: <PeopleIcon /> },
@@ -43,13 +45,12 @@ const DrawerContent = () => (
       Vybein Admin
     </Typography>
 
-    <hr className="tw-border-white/20 tw-mx-4" />
+    <hr className="tw-border-white/20 tw-mx-0" />
 
     <List className="tw-p-2">
       {navItems.map((item) => (
         <ListItem key={item.text} disablePadding>
           <ListItemButton className="tw-rounded-lg hover:tw-bg-white/10 tw-p-3">
-            {/* --- FIX IS HERE --- */}
             <ListItemIcon
               sx={{ color: "white", minWidth: "0px", marginRight: "1rem" }}
             >
@@ -62,8 +63,8 @@ const DrawerContent = () => (
       ))}
     </List>
 
-    <div className="tw-mt-auto tw-p-4 tw-text-center">
-      <hr className="tw-border-white/20 tw-mx-4 tw-mb-4" />
+    <div className="tw-mt-auto tw-pb-4 tw-text-center">
+      <hr className="tw-border-white/20  tw-mb-4" />
       <Typography variant="body2">© 2025 VybeinAdmin</Typography>
     </div>
   </div>
