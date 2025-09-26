@@ -21,7 +21,7 @@ const Header = ({ handleDrawerToggle }) => {
         </IconButton>
 
         {/* Search Bar */}
-        <div className="tw-relative tw-w-full sm:tw-w-[280px] md:tw-w-[320px] lg:tw-w-[400px]">
+        <div className="tw-relative sm:tw-w-[280px] md:tw-w-[320px] lg:tw-w-[400px]">
           <input
             type="text"
             placeholder="Search..."

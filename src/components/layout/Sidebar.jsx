@@ -27,8 +27,8 @@ import { useTheme, useMediaQuery } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const navItems = [
-  { text: "Dashboard", icon: <DashboardIcon /> },
-  { text: "Users", icon: <PeopleIcon /> },
+  { text: "Dashboard", icon: <DashboardIcon />, path: "/" },
+  { text: "Users", icon: <PeopleIcon />, path: "/users" },
   { text: "Meet-Ups", icon: <EventIcon /> },
   { text: "Rewards", icon: <CardGiftcardIcon /> },
   { text: "Categories", icon: <CategoryIcon /> },
@@ -50,7 +50,26 @@ const DrawerContent = () => (
     <List className="tw-p-2">
       {navItems.map((item) => (
         <ListItem key={item.text} disablePadding>
-          <ListItemButton className="tw-rounded-lg hover:tw-bg-white/10 tw-p-3">
+          <ListItemButton
+            component={NavLink}
+            to={item.path}
+            end={item.path === "/"} // Ensure only "Dashboard" is active for the root path
+            sx={{
+              borderRadius: "8px",
+              // margin: "4px 0",
+              "&.active": {
+                // This style is applied by NavLink when the path matches
+                backgroundColor: "#16a34a", // Green background for active link
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "#15803d", // Darker green on hover
+                },
+              },
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.08)",
+              },
+            }}
+          >
             <ListItemIcon
               sx={{ color: "white", minWidth: "0px", marginRight: "1rem" }}
             >

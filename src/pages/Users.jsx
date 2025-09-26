@@ -1,82 +1,103 @@
+// src/pages/Users.jsx
+
 import React, { useEffect, useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { getUsers } from "../services/mockApiService";
 
-// Import Material-UI components for the table
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Typography,
-  Box,
-} from "@mui/material";
+// A small component to render the colored status pills
+const StatusPill = ({ status }) => {
+  const colorMap = {
+    Active: "tw-bg-green-100 tw-text-green-800",
+    Suspended: "tw-bg-red-100 tw-text-red-800",
+    Pending: "tw-bg-yellow-100 tw-text-yellow-800",
+  };
+  return (
+    <span
+      className={`tw-px-3 tw-py-1 tw-rounded-full tw-text-sm tw-font-medium ${colorMap[status]}`}
+    >
+      {status}
+    </span>
+  );
+};
 
-function Users() {
-  // State to hold our user data
+const Users = () => {
   const [users, setUsers] = useState([]);
-  // State to handle the loading screen
   const [loading, setLoading] = useState(true);
 
-  // Fetch users when the component mounts
+  // This defines the columns for our table
+  const columns = [
+    { field: "name", headerName: "NAME", width: 200 },
+    { field: "email", headerName: "EMAIL", width: 250 },
+    {
+      field: "status",
+      headerName: "STATUS",
+      width: 150,
+      renderCell: (params) => <StatusPill status={params.value} />,
+    },
+    {
+      field: "meetupsAttended",
+      headerName: "MEET-UPS ATTENDED",
+      type: "number",
+      width: 180,
+    },
+    {
+      field: "walletBalance",
+      headerName: "WALLET BALANCE",
+      type: "number",
+      width: 160,
+    },
+    {
+      field: "actions",
+      headerName: "ACTIONS",
+      width: 200,
+      sortable: false,
+      renderCell: (params) => (
+        <div className="tw-flex tw-gap-2">
+          <Button variant="contained" size="small">
+            View
+          </Button>
+          <Button variant="contained" color="error" size="small">
+            Suspend
+          </Button>
+        </div>
+      ),
+    },
+  ];
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const data = await getUsers();
-        setUsers(data);
+        // DataGrid requires each row to have a unique 'id' property
+        setUsers(data.map((user) => ({ ...user, id: user.id })));
       } catch (error) {
-        console.error("Failed to fetch users:", error);
+        console.error("Failed to fetch users", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchUsers();
-  }, []); // The empty array [] means this effect runs once on mount
-
-  // Show a loading message while fetching data
-  if (loading) {
-    return <Typography>Loading users...</Typography>;
-  }
+  }, []);
 
   return (
-    <Box>
-      <Typography variant="h4" gutterBottom>
+    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
+      <Typography variant="h5" className="tw-font-semibold tw-mb-4">
         User Management
       </Typography>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell align="right">Meet-ups Attended</TableCell>
-              <TableCell align="right">Wallet Balance ($)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users.map((user) => (
-              <TableRow
-                key={user.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {user.name}
-                </TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>{user.status}</TableCell>
-                <TableCell align="right">{user.meetupsAttended}</TableCell>
-                <TableCell align="right">{user.walletBalance}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+      <Box sx={{ height: 600, width: "100%" }}>
+        <DataGrid
+          rows={users}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
+          loading={loading}
+          checkboxSelection
+          disableSelectionOnClick
+        />
+      </Box>
+    </div>
   );
-}
+};
 
 export default Users;
