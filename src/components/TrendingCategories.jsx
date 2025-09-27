@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 
 const TrendingCategories = ({ data }) => {
   return (
-    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm tw-h-full">
+    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
       <Typography variant="h6" className="tw-font-semibold tw-mb-4 tw-pb-4">
         <b>Trending Categories</b>
       </Typography>
@@ -12,7 +12,7 @@ const TrendingCategories = ({ data }) => {
       <div className="tw-space-y-4">
         {data.map((category) => (
           <div key={category.name}>
-            <div className="tw-flex tw-justify-between tw-mb-1">
+            <div className="tw-flex tw-justify-between tw-mb-4">
               <Typography variant="body1" className="tw-font-medium">
                 {category.name}
               </Typography>

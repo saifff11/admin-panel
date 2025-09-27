@@ -17,7 +17,7 @@ const colorMap = {
 
 const CategoriesCard = () => {
   return (
-    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm ">
+    <div className="tw-bg-white tw-p-3 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm ">
       {/* Card Header */}
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
         <Typography variant="h6" className="tw-font-semibold">
