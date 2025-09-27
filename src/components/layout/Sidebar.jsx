@@ -29,7 +29,7 @@ import { NavLink } from "react-router-dom";
 const navItems = [
   { text: "Dashboard", icon: <DashboardIcon />, path: "/" },
   { text: "Users", icon: <PeopleIcon />, path: "/users" },
-  { text: "Meet-Ups", icon: <EventIcon /> },
+  { text: "Meet-Ups", icon: <EventIcon />, path: "/meetups" },
   { text: "Rewards", icon: <CardGiftcardIcon /> },
   { text: "Categories", icon: <CategoryIcon /> },
   { text: "Notifications", icon: <NotificationsIcon /> },

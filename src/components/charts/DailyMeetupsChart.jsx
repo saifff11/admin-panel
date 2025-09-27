@@ -13,8 +13,8 @@ import { Typography } from "@mui/material";
 const DailyMeetupsChart = ({ data }) => {
   return (
     // The ResponsiveContainer makes the chart adapt to its parent's size
-    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-      <Typography variant="h6" className="tw-font-semibold tw-mb-4 tw-pb-4">
+    <div className="tw-bg-white tw-pr-6 tw-pb-2 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
+      <Typography variant="h6" className="tw-font-semibold tw-mb-4 tw-py-4 tw-pl-4">
         <b>Daily Meet-Ups</b>
       </Typography>
       <div style={{ width: "100%", height: 200 }}>

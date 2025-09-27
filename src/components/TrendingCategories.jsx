@@ -3,8 +3,8 @@ import { Typography } from "@mui/material";
 
 const TrendingCategories = ({ data }) => {
   return (
-    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-      <Typography variant="h6" className="tw-font-semibold tw-mb-4 tw-pb-4">
+    <div className="tw-bg-white tw-p-4 tw-px-5 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
+      <Typography variant="h6" className="tw-font-semibold tw-mb-4 tw-pb-3">
         <b>Trending Categories</b>
       </Typography>
 

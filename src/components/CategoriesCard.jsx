@@ -19,7 +19,7 @@ const CategoriesCard = () => {
   return (
     <div className="tw-bg-white tw-p-3 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm ">
       {/* Card Header */}
-      <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
+      <div className="tw-flex tw-justify-between tw-items-center tw-mb-3">
         <Typography variant="h6" className="tw-font-semibold">
           Categories
         </Typography>

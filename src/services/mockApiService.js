@@ -76,3 +76,14 @@ export const getUserDistribution = async () => {
   ];
   return data;
 };
+
+export const getMeetups = async () => {
+  await sleep(800);
+  return Array.from({ length: 20 }, () => ({
+    id: `MU-${faker.number.int({ min: 1000, max: 9999 })}`,
+    title: faker.lorem.words(3),
+    organizer: faker.person.fullName(),
+    date: faker.date.future(),
+    status: faker.helpers.arrayElement(["Upcoming", "Completed", "Cancelled"]),
+  }));
+};

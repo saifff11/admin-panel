@@ -26,12 +26,12 @@ const CustomLegend = ({ payload }) => {
 
 const UserDistributionChart = ({ data }) => {
   return (
-    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm tw-h-full">
-      <Typography variant="h6" className="tw-font-semibold tw-mb-4">
+    <div className="tw-bg-white tw-p-4 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm ">
+      <Typography variant="h6" className="!tw-font-semibold !tw-mb-4">
         User Distribution
       </Typography>
 
-      <div style={{ width: "60%", height: 200 }}>
+      <div style={{ width: "100%", height: 200 }} className="!tw-flex !tw-flex-col !tw-items-center">
         <ResponsiveContainer>
           <PieChart>
             <Pie
