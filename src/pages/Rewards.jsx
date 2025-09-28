@@ -28,7 +28,7 @@ const Rewards = () => {
   return (
     <div className="tw-space-y-8">
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-2">
-        <h1 className="tw-text-xl tw-font-semibold">Reward Price Control</h1>
+        <h1 className="tw-text-3xl tw-font-semibold tw-m-0">Reward Price Control</h1>
         <div className="tw-flex tw-gap-2">
           <Button variant="outlined" sx={{ color: "#16a34a" }}>
             Export Rewards Data

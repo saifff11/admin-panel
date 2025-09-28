@@ -104,8 +104,199 @@ export const getMeetups = async () => {
 export const getRewardPriceHistory = async () => {
   await sleep(400);
   return [
-    { id: 1, date: '2024-01-15', rewardType: 'Referral Reward', previousAmount: 10, newAmount: 5, changedBy: 'Admin', reason: 'Cost optimization' },
-    { id: 2, date: '2024-01-10', rewardType: 'Host Reward', previousAmount: 5, newAmount: 10, changedBy: 'Super Admin', reason: 'Incentivize hosting' },
+    {
+      id: 1,
+      date: "2024-01-15",
+      rewardType: "Referral Reward",
+      previousAmount: 10,
+      newAmount: 5,
+      changedBy: "Admin",
+      reason: "Cost optimization",
+    },
+    {
+      id: 2,
+      date: "2024-01-10",
+      rewardType: "Host Reward",
+      previousAmount: 5,
+      newAmount: 10,
+      changedBy: "Super Admin",
+      reason: "Incentivize hosting",
+    },
     // Add more mock data if you wish
+  ];
+};
+
+export const getCategoryStats = async () => {
+  await sleep(100);
+  return {
+    totalCategories: { value: 23, subtitle: "48 subcategories" },
+    activeMeetups: { value: 32, subtitle: "+23 this week" },
+    popularCategory: {
+      value: "Spiritual Gathering",
+      subtitle: "67 active meetups",
+    },
+    totalLocations: { value: 0, subtitle: "Available options" },
+  };
+};
+
+export const getFullCategories = async () => {
+  await sleep(600);
+  return [
+    {
+      id: 1,
+      name: "Food & Beverage Meetups",
+      icon: "🍔",
+      status: "Active",
+      description:
+        "Casual or planned meetups over tea, coffee, meals, or snacks in various settings.",
+      stats: { activeMeetups: 21, totalUsers: 202, subcategories: 7 },
+      subcategories: [
+        "Tea",
+        "Coffee",
+        "Soft Drink",
+        "Pizza",
+        "Fast Food",
+        "+2 more",
+      ],
+    },
+    {
+      id: 2,
+      name: "Social Hangouts & Gupshup",
+      icon: "👥",
+      status: "Active",
+      description:
+        "Friendly social gatherings, chit-chats, and casual hangouts with friends or groups.",
+      stats: { activeMeetups: 194, totalUsers: 194, subcategories: 6 },
+      subcategories: [
+        "Friends",
+        "Get-together",
+        "Chit-Chat",
+        "Community",
+        "+2 more",
+      ],
+    },
+  ];
+};
+
+export const getNotificationTemplates = async () => {
+  await sleep(100);
+  return [
+    { id: 1, name: "Welcome Message" },
+    { id: 2, name: "Meetup Reminder" },
+    { id: 3, name: "You're Late Alert" },
+    { id: 4, name: "Payment Successful" },
+  ];
+};
+
+export const getRecentNotifications = async () => {
+  await sleep(300);
+  return [
+    {
+      id: 1,
+      title: "New Feature Update",
+      target: "All Users",
+      time: "2 hours ago",
+      status: "Delivered",
+    },
+    {
+      id: 2,
+      title: "Meetup Reminder",
+      target: "45 Users",
+      time: "1 day ago",
+      status: "Delivered",
+    },
+    {
+      id: 3,
+      title: "Weekly Summary",
+      target: "All Users",
+      time: "3 days ago",
+      status: "Scheduled",
+    },
+  ];
+};
+
+export const getWalletTransactions = async () => {
+  await sleep(700);
+  return Array.from({ length: 5 }, () => ({
+    id: faker.string.uuid(),
+    date: faker.date.recent({ days: 60 }),
+    user: faker.person.fullName(),
+    type: faker.helpers.arrayElement(["Credit", "Refund", "Penalty"]),
+    amount: faker.finance.amount({ min: -50, max: 200, dec: 2 }),
+    balanceAfter: faker.finance.amount({ min: 100, max: 500, dec: 2 }),
+    admin: faker.helpers.arrayElement(["System", "Admin"]),
+    reason: faker.lorem.words(3),
+    status: "Completed",
+  }));
+};
+
+export const getReportStats = async () => {
+  await sleep(100);
+  return {
+    newReports: { value: 12, trend: 5 },
+    inProgress: { value: 9, trend: -2 },
+    resolvedToday: { value: 5, trend: 3 },
+    falseReports: { value: 10, trend: 1 },
+  };
+};
+
+export const getUserReports = async () => {
+  await sleep(600);
+  return Array.from({ length: 5 }, (_, i) => ({
+    id: `RPT-00${i + 1}`,
+    reportedBy: faker.person.fullName(),
+    reportedUser: faker.person.fullName(),
+    type: faker.helpers.arrayElement([
+      "USER BEHAVIOR",
+      "INAPPROPRIATE CONTENT",
+      "PAYMENT ISSUES",
+      "FAKE PROFILE",
+      "HARASSMENT",
+    ]),
+    priority: faker.helpers.arrayElement(["HIGH", "MEDIUM", "LOW"]),
+    date: faker.date.recent({ days: 10 }),
+    status: faker.helpers.arrayElement(["NEW", "IN PROGRESS", "RESOLVED"]),
+  }));
+};
+
+export const getTeamMembers = async () => {
+  await sleep(400);
+  return [
+    {
+      id: 1,
+      name: "Admin User",
+      email: "admin@vybein.com",
+      role: "SUPER ADMIN",
+      permissions: "Full Access",
+      lastActive: "Just now",
+      status: "ACTIVE",
+    },
+    {
+      id: 2,
+      name: "Support Staff",
+      email: "support@vybein.com",
+      role: "MODERATOR",
+      permissions: "User Management, Reports",
+      lastActive: "2 hours ago",
+      status: "ACTIVE",
+    },
+    {
+      id: 3,
+      name: "Content Manager",
+      email: "content@vybein.com",
+      role: "EDITOR",
+      permissions: "Categories, Notifications",
+      lastActive: "1 day ago",
+      status: "ACTIVE",
+    },
+    {
+      id: 4,
+      name: "Financial Admin",
+      email: "finance@vybein.com",
+      role: "FINANCE MANAGER",
+      permissions: "Wallet, Analytics, Reports",
+      lastActive: "3 hours ago",
+      status: "SUSPENDED",
+    },
   ];
 };

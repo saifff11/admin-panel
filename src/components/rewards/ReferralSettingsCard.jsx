@@ -22,7 +22,7 @@ const ReferralSettingsCard = () => {
         <h3 className="tw-text-lg tw-font-semibold flex items-center gap-2">
           🔗 Referral Reward Settings
         </h3>
-        
+
         <span className="tw-text-gray-600 tw-font-medium">ACTIVE</span>
       </div>
       <hr className="tw-border-gray/10 tw-mx-2" />
@@ -86,6 +86,11 @@ const ReferralSettingsCard = () => {
             <Checkbox
               checked={conditions.instantCredit}
               onChange={() => handleConditionChange("instantCredit")}
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
             />
           }
           label="Instant credit on signup"
@@ -95,6 +100,11 @@ const ReferralSettingsCard = () => {
             <Checkbox
               checked={conditions.creditAfterMeetup}
               onChange={() => handleConditionChange("creditAfterMeetup")}
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
             />
           }
           label="Credit after first meetup"
@@ -104,6 +114,11 @@ const ReferralSettingsCard = () => {
             <Checkbox
               checked={conditions.bothVerified}
               onChange={() => handleConditionChange("bothVerified")}
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
             />
           }
           label="Both users must be verified"
@@ -113,6 +128,11 @@ const ReferralSettingsCard = () => {
             <Checkbox
               checked={conditions.limitPerUser}
               onChange={() => handleConditionChange("limitPerUser")}
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
             />
           }
           label="Limit per user per month"
@@ -121,8 +141,12 @@ const ReferralSettingsCard = () => {
 
       {/* Action buttons */}
       <div className="tw-flex tw-gap-3">
-        <Button variant="contained" sx={{ backgroundColor: "#16a34a" }}>Save Changes</Button>
-        <Button variant="outlined" sx={{ color: "#16a34a" }}>Reset to Default</Button>
+        <Button variant="contained" sx={{ backgroundColor: "#16a34a" }}>
+          Save Changes
+        </Button>
+        <Button variant="outlined" sx={{ color: "#16a34a" }}>
+          Reset to Default
+        </Button>
       </div>
     </div>
   );
