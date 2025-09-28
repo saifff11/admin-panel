@@ -30,13 +30,13 @@ const navItems = [
   { text: "Dashboard", icon: <DashboardIcon />, path: "/" },
   { text: "Users", icon: <PeopleIcon />, path: "/users" },
   { text: "Meet-Ups", icon: <EventIcon />, path: "/meetups" },
-  { text: "Rewards", icon: <CardGiftcardIcon /> },
-  { text: "Categories", icon: <CategoryIcon /> },
-  { text: "Notifications", icon: <NotificationsIcon /> },
-  { text: "Wallet", icon: <AccountBalanceWalletIcon /> },
-  { text: "Analytics", icon: <AssessmentIcon /> },
-  { text: "Reports", icon: <ReportIcon /> },
-  { text: "Settings", icon: <SettingsIcon /> },
+  { text: "Rewards", icon: <CardGiftcardIcon />, path: "/rewards" },
+  { text: "Categories", icon: <CategoryIcon />, path: "/categories" },
+  { text: "Notifications", icon: <NotificationsIcon />, path: "/notifications" },
+  { text: "Wallet", icon: <AccountBalanceWalletIcon />, path: "/wallet" },
+  { text: "Analytics", icon: <AssessmentIcon />, path: "/analytics" },
+  { text: "Reports", icon: <ReportIcon />, path: "/reports" },
+  { text: "Settings", icon: <SettingsIcon />, path: "/settings" },
 ];
 
 const DrawerContent = () => (

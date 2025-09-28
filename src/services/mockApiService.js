@@ -30,7 +30,7 @@ export const getDashboardStats = async () => {
 export const getUsers = async () => {
   await sleep(1000);
   // Create an array of 10 fake users
-  return Array.from({ length: 10 }, () => ({
+  return Array.from({ length: 5 }, () => ({
     id: faker.string.uuid(),
     name: faker.person.fullName(),
     email: faker.internet.email(),
@@ -79,11 +79,33 @@ export const getUserDistribution = async () => {
 
 export const getMeetups = async () => {
   await sleep(800);
-  return Array.from({ length: 20 }, () => ({
-    id: `MU-${faker.number.int({ min: 1000, max: 9999 })}`,
-    title: faker.lorem.words(3),
-    organizer: faker.person.fullName(),
-    date: faker.date.future(),
-    status: faker.helpers.arrayElement(["Upcoming", "Completed", "Cancelled"]),
-  }));
+
+  return Array.from({ length: 5 }, () => {
+    const capacity = faker.number.int({ min: 3, max: 10 });
+    const participants = faker.number.int({ min: 1, max: capacity });
+
+    return {
+      id: faker.number.int({ min: 100, max: 999 }), // simple numeric ID like in screenshot
+      title: faker.lorem.words(3),
+      category: faker.helpers.arrayElement([
+        "Tea/Coffee",
+        "Walk",
+        "Trip",
+        "Workshop",
+      ]),
+      participants,
+      capacity,
+      date: faker.date.future(),
+      status: faker.helpers.arrayElement(["CONFIRMED", "PENDING", "CANCELLED"]),
+    };
+  });
+};
+
+export const getRewardPriceHistory = async () => {
+  await sleep(400);
+  return [
+    { id: 1, date: '2024-01-15', rewardType: 'Referral Reward', previousAmount: 10, newAmount: 5, changedBy: 'Admin', reason: 'Cost optimization' },
+    { id: 2, date: '2024-01-10', rewardType: 'Host Reward', previousAmount: 5, newAmount: 10, changedBy: 'Super Admin', reason: 'Incentivize hosting' },
+    // Add more mock data if you wish
+  ];
 };
