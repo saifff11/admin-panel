@@ -41,7 +41,7 @@ const Categories = () => {
     <div className="tw-space-y-6">
       {/* Page Header */}
       <div className="tw-flex tw-justify-between tw-items-center">
-        <Typography variant="h4" className="tw-font-bold">
+        <Typography variant="h4" className="!tw-font-bold">
           Category Management Dashboard
         </Typography>
         <div className="tw-flex tw-gap-2">

@@ -10,7 +10,12 @@ const StatCard = ({ title, value, icon, trend, trendDirection }) => {
   const iconBgColor = isPositive ? "tw-bg-green-100" : "tw-bg-red-100";
 
   return (
-    <div className="tw-bg-white tw-p-5 tw-shadow-sm tw-border tw-border-gray-200 tw-rounded-xl tw-flex tw-items-center tw-justify-between">
+    <div
+      className="tw-bg-white tw-p-5 tw-shadow-sm tw-border tw-border-gray-200 tw-rounded-xl 
+                tw-flex tw-items-center tw-justify-between
+                tw-transform tw-transition tw-duration-200 tw-ease-in-out
+                hover:tw-scale-103 hover:tw-shadow-lg hover:tw-backdrop-blur-sm hover:tw-translate-y-[-2px]"
+    >
       <div>
         <Typography variant="subtitle2" className="tw-text-gray-500 tw-pb-2">
           {title}

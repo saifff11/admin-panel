@@ -9,3 +9,13 @@ body,
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --color-background: #f8f9fa; /* Light page background */
+  --color-sidebar: #1a212f;      /* Dark sidebar */
+  --color-card: #ffffff;         /* White card background */
+  --color-text-primary: #212529; /* Dark text */
+  --color-text-secondary: #6c757d;/* Grey text */
+  --color-primary: #16a34a;      /* Main green color */
+  --color-border: #e9ecef;       /* Light border */
+}

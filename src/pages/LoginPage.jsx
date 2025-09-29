@@ -87,8 +87,10 @@ const LoginPage = () => {
           </button>
         </form>
 
+        <hr className="tw-border-gray/10 tw-mx-2 tw-mr-6 tw-mt-10" />
+
         {/* Footer */}
-        <div className="tw-border-t tw-border-gray-200 tw-mt-10 tw-pt-6">
+        <div className="tw-border-t tw-border-gray-10 tw-mt-10 tw-pt-0">
           <p className="tw-text-center tw-text-xs tw-text-gray-400">
             © 2025 Vybein. All rights reserved.
           </p>
