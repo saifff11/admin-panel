@@ -1,5 +1,6 @@
 import React from "react";
-import { IconButton, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { IconButton, Typography, Button } from "@mui/material";
 
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -7,7 +8,16 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 
+import { logout } from "../../services/authService";
+
 const Header = ({ handleDrawerToggle }) => {
+  const navigate = useNavigate();
+
+  // Simplified logout handler
+  const handleLogout = () => {
+    logout(); // Call the logout function to clear the token
+    navigate("/login"); // Redirect to the login page
+  };
   return (
     <header className="tw-fixed tw-top-0 tw-left-0 lg:tw-left-[280px] tw-right-0 tw-z-50 tw-bg-gray-50 tw-p-3 tw-border-b tw-border-gray-200 tw-shadow-lg">
       <div className="tw-flex tw-items-center">
@@ -48,6 +58,13 @@ const Header = ({ handleDrawerToggle }) => {
         <IconButton color="inherit">
           <HelpOutlineIcon />
         </IconButton>
+        <Button
+          variant="outlined"
+          onClick={handleLogout}
+          sx={{ marginLeft: 2, backgroundColor: "#16a34a", color: "white" }}
+        >
+          Logout
+        </Button>
       </div>
     </header>
   );
