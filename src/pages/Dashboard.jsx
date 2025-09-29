@@ -118,7 +118,7 @@ const Dashboard = () => {
           <TrendingCategories data={categories} />
         </div>
       </div>
-      <div className="tw-grid tw-grid-cols-1 lg:tw-grid-cols-4 tw-gap-6">
+      <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-4 lg:tw-grid-cols-4 tw-gap-6">
         <div className="tw-col-span-1">
           <UserDistributionChart data={distributionData} />
         </div>

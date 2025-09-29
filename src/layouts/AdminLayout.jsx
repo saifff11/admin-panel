@@ -17,7 +17,7 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="tw-flex tw-h-full tw-bg-gray-100">
+    <div className="tw-flex tw-min-h-screen tw-bg-gray-100">
       <Sidebar
         isMobileSidebarOpen={isMobileSidebarOpen}
         handleDrawerToggle={handleDrawerToggle}
@@ -31,7 +31,7 @@ const AdminLayout = () => {
         }} // dynamic margin
       >
         <Header handleDrawerToggle={handleDrawerToggle} />
-        <main className="tw-flex-1 tw-p-6">
+        <main className="tw-flex-1 tw-p-6 tw-pt-[5.8rem]">
           <Outlet />
         </main>
       </div>

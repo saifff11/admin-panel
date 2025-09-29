@@ -6,7 +6,7 @@ const CustomLegend = ({ payload }) => {
   const total = payload.reduce((sum, entry) => sum + entry.payload.value, 0);
 
   return (
-    <ul className="tw-list-none tw-p-0 tw-mt-4 tw-space-y-3">
+    <ul className="tw-list-none tw-p-0 tw-mt-6 tw-space-y-3">
       {payload.map((entry, index) => {
         const percentage = ((entry.payload.value / total) * 100).toFixed(0);
         return (
@@ -15,8 +15,8 @@ const CustomLegend = ({ payload }) => {
               className="tw-w-3 tw-h-3 tw-rounded-full tw-mr-3"
               style={{ backgroundColor: entry.color }}
             ></span>
-            <span className="tw-text-gray-600">{entry.payload.name}</span>
-            <span className="tw-font-semibold tw-ml-auto">{`${percentage}% (${entry.payload.users} Users)`}</span>
+            <span className="tw-text-gray-600 tw-mb-3">{entry.payload.name}</span>
+            <span className="tw-font-semibold tw-ml-auto tw-mb-3">{`${percentage}% (${entry.payload.users} Users)`}</span>
           </li>
         );
       })}
@@ -27,7 +27,7 @@ const CustomLegend = ({ payload }) => {
 const UserDistributionChart = ({ data }) => {
   return (
     <div className="tw-bg-white tw-p-4 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm ">
-      <Typography variant="h6" className="!tw-font-semibold !tw-mb-4">
+      <Typography variant="h6" className="!tw-font-semibold !tw-mb-6 !tw-mt-2">
         User Distribution
       </Typography>
 

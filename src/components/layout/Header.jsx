@@ -9,7 +9,7 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 
 const Header = ({ handleDrawerToggle }) => {
   return (
-    <header className="tw-bg-gray-50 tw-p-3 tw-border-b tw-border-gray-200">
+    <header className="tw-fixed tw-top-0 tw-left-0 lg:tw-left-[280px] tw-right-0 tw-z-50 tw-bg-gray-50 tw-p-3 tw-border-b tw-border-gray-200 tw-shadow-lg">
       <div className="tw-flex tw-items-center">
         {/* Hamburger Icon for mobile */}
         <IconButton
@@ -21,7 +21,7 @@ const Header = ({ handleDrawerToggle }) => {
         </IconButton>
 
         {/* Search Bar */}
-        <div className="tw-relative sm:tw-w-[280px] md:tw-w-[320px] lg:tw-w-[400px]">
+        <div className="tw-relative tw-w sm:tw-w-[280px] md:tw-w-[320px] lg:tw-w-[400px]">
           <input
             type="text"
             placeholder="Search..."
@@ -34,9 +34,9 @@ const Header = ({ handleDrawerToggle }) => {
         <div className="tw-flex-grow" />
 
         {/* Wallet Balance */}
-        <div className="tw-flex tw-items-center tw-mr-4">
-          <AccountBalanceWalletOutlinedIcon className="tw-text-gray-600 tw-mr-2" />
-          <Typography variant="subtitle1" className="tw-font-bold">
+        <div className="tw-flex tw-items-center tw-mx-4">
+          <AccountBalanceWalletOutlinedIcon className="!tw-text-gray-600 !tw-mx-2" />
+          <Typography variant="subtitle1" className="!tw-font-bold">
             ₹87,650
           </Typography>
         </div>
