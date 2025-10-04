@@ -26,9 +26,15 @@ const RewardHistory = () => {
     <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
       {/* Header */}
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
-        <h2 className="tw-font-semibold tw-text-lg">Reward Price Change History</h2>
+        <h2 className="tw-font-semibold tw-text-lg">
+          Reward Price Change History
+        </h2>
         <div className="tw-flex tw-gap-2">
-          <Button variant="outlined" size="small">
+          <Button
+            variant="outlined"
+            size="small"
+            sx={{ borderColor: "#16a34a", color: "#16a34a" }}
+          >
             Export
           </Button>
         </div>

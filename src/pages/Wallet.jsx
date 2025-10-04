@@ -1,7 +1,4 @@
-// src/pages/Wallet.jsx
-
 import React, { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
 import { getWalletTransactions } from "../services/mockApiService";
 
 import WalletStatCard from "../components/wallet/WalletStatCard";

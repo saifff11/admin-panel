@@ -45,7 +45,7 @@ const TransactionHistory = ({ transactions, loading }) => {
     <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
       {/* Header section */}
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
-        <Typography variant="h6" className="tw-font-bold">
+        <Typography variant="h6" className="!tw-font-bold">
           Recent Transaction History
         </Typography>
         <div className="tw-flex tw-gap-2">
@@ -56,7 +56,7 @@ const TransactionHistory = ({ transactions, loading }) => {
           <Select size="small" defaultValue="all">
             <MenuItem value="all">All Types</MenuItem>
           </Select>
-          <Button variant="outlined" size="small">
+          <Button variant="outlined" size="small" sx={{ borderColor: "#16a34a", color: "#16a34a" }}>
             Export
           </Button>
         </div>

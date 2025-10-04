@@ -1,4 +1,3 @@
-// src/components/reports/ReportBreakdown.jsx
 import React from "react";
 import { Typography } from "@mui/material";
 
@@ -24,7 +23,7 @@ const ReportBreakdown = () => {
   return (
     <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-6">
       <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-        <Typography variant="h6" className="tw-font-bold tw-mb-4">
+        <Typography variant="h6" className="!tw-font-bold !tw-mb-4">
           Report Categories Breakdown
         </Typography>
         <div className="tw-space-y-3">
@@ -41,7 +40,7 @@ const ReportBreakdown = () => {
         </div>
       </div>
       <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-        <Typography variant="h6" className="tw-font-bold tw-mb-4">
+        <Typography variant="h6" className="!tw-font-bold !tw-mb-4">
           Resolution Times
         </Typography>
         <div className="tw-space-y-2">
@@ -55,7 +54,7 @@ const ReportBreakdown = () => {
           ))}
         </div>
         <div className="tw-bg-gray-50 tw-p-4 tw-rounded-lg tw-mt-4">
-          <Typography variant="subtitle1" className="tw-font-semibold tw-mb-2">
+          <Typography variant="subtitle1" className="!tw-font-semibold !tw-mb-2">
             Performance Targets:
           </Typography>
           <ul className="tw-list-disc tw-list-inside tw-text-gray-600">

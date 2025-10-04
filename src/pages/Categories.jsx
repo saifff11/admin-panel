@@ -45,12 +45,23 @@ const Categories = () => {
           Category Management Dashboard
         </Typography>
         <div className="tw-flex tw-gap-2">
-          <Button variant="outlined">Import from JSON</Button>
-          <Button variant="outlined">Export Categories</Button>
+          <Button
+            variant="outlined"
+            sx={{ borderColor: "#16a34a", color: "#16a34a" }}
+          >
+            Import from JSON
+          </Button>
+          <Button
+            variant="outlined"
+            sx={{ borderColor: "#16a34a", color: "#16a34a" }}
+          >
+            Export Categories
+          </Button>
           <Button
             variant="contained"
             startIcon={<AddIcon />}
             onClick={() => setShowQuickAdd(true)}
+            sx={{ backgroundColor: "#16a34a", color: "white", border: "none" }}
           >
             Add New Category
           </Button>

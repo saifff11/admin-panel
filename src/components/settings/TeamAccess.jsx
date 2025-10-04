@@ -1,4 +1,3 @@
-// src/components/settings/TeamAccess.jsx
 import React from "react";
 import { Typography, TextField, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -28,13 +27,17 @@ const TeamAccess = ({ members, loading }) => {
   return (
     <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
-        <Typography variant="h6" className="tw-font-bold">
+        <Typography variant="h6" className="!tw-font-bold">
           Team Access & Permissions
         </Typography>
         <div className="tw-flex tw-gap-2">
           <TextField placeholder="Search team members..." size="small" />
-          <Button variant="contained" startIcon={<AddIcon />}>
-            + Add Sub-Admin
+          <Button
+            variant="contained"
+            startIcon={<AddIcon />}
+            sx={{ backgroundColor: "#16a34a" }}
+          >
+            Add Sub-Admin
           </Button>
         </div>
       </div>
@@ -84,7 +87,11 @@ const TeamAccess = ({ members, loading }) => {
                     />
                   </td>
                   <td className="tw-p-3">
-                    <Button size="small" variant="outlined">
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      sx={{ borderColor: "#16a34a", color: "#16a34a" }}
+                    >
                       Edit
                     </Button>
                   </td>

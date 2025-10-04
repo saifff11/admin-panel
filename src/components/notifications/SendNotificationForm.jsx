@@ -63,9 +63,9 @@ const SendNotificationForm = () => {
           </Select>
         </FormControl>
         <div className="tw-flex tw-gap-4">
-          <Button variant="contained">Send Now</Button>
-          <Button variant="outlined">Schedule</Button>
-          <Button variant="outlined">Save as Template</Button>
+          <Button variant="contained" sx={{backgroundColor: "#16a34a"}}>Send Now</Button>
+          <Button variant="outlined" sx={{ borderColor: "#16a34a", color: "#16a34a" }}>Schedule</Button>
+          <Button variant="outlined" sx={{ borderColor: "#16a34a", color: "#16a34a" }}>Save as Template</Button>
         </div>
       </div>
     </div>

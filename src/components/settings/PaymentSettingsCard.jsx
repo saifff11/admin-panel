@@ -1,4 +1,3 @@
-// src/components/settings/PaymentSettingsCard.jsx
 import React from "react";
 import {
   Typography,
@@ -11,7 +10,7 @@ import {
 const PaymentSettingsCard = () => {
   return (
     <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-      <Typography variant="h6" className="tw-font-bold tw-mb-4">
+      <Typography variant="h6" className="!tw-font-bold !tw-mb-4">
         Payment & Pricing Settings
       </Typography>
       <div className="tw-grid tw-grid-cols-2 tw-gap-4">
@@ -35,20 +34,62 @@ const PaymentSettingsCard = () => {
       <div className="tw-mt-4">
         <Typography>Payment Methods</Typography>
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={
+            <Checkbox
+              defaultChecked
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
           label="UPI Payments"
         />
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={
+            <Checkbox
+              defaultChecked
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
           label="Credit/Debit Cards"
         />
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={
+            <Checkbox
+              defaultChecked
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
           label="Wallet Balance"
         />
-        <FormControlLabel control={<Checkbox />} label="Net Banking" />
+        <FormControlLabel
+          control={
+            <Checkbox
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
+          label="Net Banking"
+        />
       </div>
-      <Button variant="contained" className="!tw-mt-4">
+      <Button
+        variant="contained"
+        className="!tw-mt-4"
+        sx={{ backgroundColor: "#16a34a" }}
+      >
         Update Pricing
       </Button>
     </div>

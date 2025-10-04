@@ -1,4 +1,3 @@
-// src/components/settings/SecurityPrivacyCard.jsx
 import React from "react";
 import {
   Typography,
@@ -12,25 +11,59 @@ import {
 const SecurityPrivacyCard = () => {
   return (
     <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-      <Typography variant="h6" className="tw-font-bold tw-mb-4">
+      <Typography variant="h6" className="!tw-font-bold !tw-mb-4">
         Security & Privacy
       </Typography>
       <div>
         <Typography>User Verification</Typography>
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={
+            <Checkbox
+              defaultChecked
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
           label="Phone Number Verification Required"
         />
         <FormControlLabel
-          control={<Checkbox />}
+          control={
+            <Checkbox
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
           label="Email Verification Required"
         />
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={
+            <Checkbox
+              defaultChecked
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
           label="Profile Photo Required"
         />
         <FormControlLabel
-          control={<Checkbox />}
+          control={
+            <Checkbox
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
           label="ID Verification for Premium"
         />
       </div>
@@ -46,7 +79,11 @@ const SecurityPrivacyCard = () => {
           <MenuItem value={12}>12 months</MenuItem>
         </Select>
       </div>
-      <Button variant="contained" className="!tw-mt-4">
+      <Button
+        variant="contained"
+        className="!tw-mt-4"
+        sx={{ backgroundColor: "#16a34a" }}
+      >
         Update Security Settings
       </Button>
     </div>

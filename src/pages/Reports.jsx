@@ -1,5 +1,3 @@
-// src/pages/Reports.jsx
-
 import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { getReportStats, getUserReports } from "../services/mockApiService";

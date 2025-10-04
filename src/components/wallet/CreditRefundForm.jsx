@@ -16,7 +16,7 @@ import {
 const CreditRefundForm = () => {
   return (
     <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-      <Typography variant="h6" className="tw-font-bold tw-mb-4">
+      <Typography variant="h6" className="!tw-font-bold !tw-mb-4">
         Wallet Credit/Refund
       </Typography>
       <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-4">
@@ -51,17 +51,55 @@ const CreditRefundForm = () => {
         />
       </div>
       <FormGroup row className="tw-mt-4">
-        <Typography className="tw-mr-4">Send Notification</Typography>
+        <Typography className="!tw-mr-4">Send Notification</Typography>
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={
+            <Checkbox
+              defaultChecked
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
           label="App Notification"
         />
-        <FormControlLabel control={<Checkbox />} label="WhatsApp Message" />
-        <FormControlLabel control={<Checkbox />} label="SMS" />
+        <FormControlLabel
+          control={
+            <Checkbox
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
+          label="WhatsApp Message"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              sx={{
+                "&.Mui-checked": {
+                  color: "#16a34a", // green when checked
+                },
+              }}
+            />
+          }
+          label="SMS"
+        />
       </FormGroup>
       <div className="tw-flex tw-gap-4 tw-mt-4">
-        <Button variant="contained">Process Transaction</Button>
-        <Button variant="outlined">Clear Form</Button>
+        <Button variant="contained" sx={{ backgroundColor: "#16a34a" }}>
+          Process Transaction
+        </Button>
+        <Button
+          variant="outlined"
+          sx={{ borderColor: "#16a34a", color: "#16a34a" }}
+        >
+          Clear Form
+        </Button>
       </div>
     </div>
   );

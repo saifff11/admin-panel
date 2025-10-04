@@ -1,5 +1,3 @@
-// src/pages/Settings.jsx
-
 import React, { useState, useEffect } from "react";
 import { getTeamMembers } from "../services/mockApiService";
 

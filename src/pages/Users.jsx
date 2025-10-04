@@ -45,10 +45,18 @@ const Users = () => {
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
         <h2 className="tw-font-semibold tw-text-lg">User Management</h2>
         <div className="tw-flex tw-gap-2">
-          <Button variant="outlined" size="small">
+          <Button
+            variant="outlined"
+            size="small"
+            sx={{ borderColor: "#16a34a", color: "#16a34a" }}
+          >
             Filter
           </Button>
-          <Button variant="contained" sx={{backgroundColor: "#16a34a"}} size="small">
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "#16a34a" }}
+            size="small"
+          >
             Add User
           </Button>
         </div>

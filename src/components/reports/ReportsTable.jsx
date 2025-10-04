@@ -1,4 +1,3 @@
-// src/components/reports/ReportsTable.jsx
 import React from "react";
 import { Typography, TextField, Button, Select, MenuItem } from "@mui/material";
 import { format } from "date-fns";
@@ -29,18 +28,32 @@ const ReportsTable = ({ reports, loading }) => {
   return (
     <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
-        <Typography variant="h6" className="tw-font-bold">
+        <Typography variant="h6" className="!tw-font-bold">
           User Reports Management
         </Typography>
         <div className="tw-flex tw-gap-2">
           <TextField placeholder="Search reports..." size="small" />
           <Select size="small" defaultValue="all">
             <MenuItem value="all">All Types</MenuItem>
+            <MenuItem value="all">User Behavior</MenuItem>
+            <MenuItem value="all">Inappropriate Content</MenuItem>
+            <MenuItem value="all">Payment Issues</MenuItem>
+            <MenuItem value="all">Fake Profile</MenuItem>
+            <MenuItem value="all">Harassment</MenuItem>
+            <MenuItem value="all">Other</MenuItem>
           </Select>
           <Select size="small" defaultValue="all">
             <MenuItem value="all">All Status</MenuItem>
+            <MenuItem value="all">New</MenuItem>
+            <MenuItem value="all">In Progress</MenuItem>
+            <MenuItem value="all">Resolved</MenuItem>
+            <MenuItem value="all">Dismissed</MenuItem>
           </Select>
-          <Button variant="outlined" size="small">
+          <Button
+            variant="outlined"
+            size="small"
+            sx={{ borderColor: "#16a34a", color: "#16a34a" }}
+          >
             Export
           </Button>
         </div>
@@ -100,7 +113,11 @@ const ReportsTable = ({ reports, loading }) => {
                     />
                   </td>
                   <td className="tw-p-3">
-                    <Button size="small" variant="contained">
+                    <Button
+                      size="small"
+                      variant="contained"
+                      sx={{ backgroundColor: "#16a34a" }}
+                    >
                       Review
                     </Button>
                   </td>

@@ -19,7 +19,7 @@ const QuickAddCategory = ({ show, onToggle }) => {
         <h3 className="tw-text-xl tw-font-semibold">
           🚀 Quick Add New Category
         </h3>
-        <Button variant="outlined" color="inherit" onClick={onToggle}>
+        <Button variant="outlined" color="inherit" onClick={onToggle} sx={{backgroundColor: "#16a34a", color: "white", border: "none"}}>
           Toggle Quick Add
         </Button>
       </div>

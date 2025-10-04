@@ -1,5 +1,3 @@
-// src/pages/Notifications.jsx
-
 import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import {

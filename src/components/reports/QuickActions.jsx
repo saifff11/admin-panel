@@ -1,4 +1,3 @@
-// src/components/reports/QuickActions.jsx
 import React from "react";
 import { Typography } from "@mui/material";
 
@@ -6,7 +5,7 @@ const ActionButton = ({ title, icon, isPrimary }) => (
   <button
     className={`tw-p-4 tw-rounded-lg tw-flex tw-flex-col tw-items-center tw-justify-center tw-w-full ${
       isPrimary
-        ? "tw-bg-blue-500 tw-text-white"
+        ? "tw-bg-green-500 tw-text-white"
         : "tw-bg-gray-100 hover:tw-bg-gray-200"
     }`}
   >
@@ -18,7 +17,7 @@ const ActionButton = ({ title, icon, isPrimary }) => (
 const QuickActions = () => {
   return (
     <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-      <Typography variant="h6" className="tw-font-bold tw-mb-4">
+      <Typography variant="h6" className="!tw-font-bold !tw-mb-4">
         Quick Actions
       </Typography>
       <div className="tw-grid tw-grid-cols-2 md:tw-grid-cols-4 tw-gap-4">
