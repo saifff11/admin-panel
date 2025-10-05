@@ -5,14 +5,19 @@ import { Navigate, Outlet } from "react-router-dom";
 import { isAuthenticated } from "../../services/authService";
 
 const ProtectedRoute = () => {
-  const isAuth = isAuthenticated();
+  // Original line that checks for a real login token
+  // const isAuth = isAuthenticated();
+
+  // --- DEVELOPMENT TRICK ---
+  // Force 'isAuth' to be true to bypass the login screen during development
+  const isAuth = true;
 
   if (!isAuth) {
-    // If not authenticated, redirect to the login page
+    // This logic is now temporarily disabled
     return <Navigate to="/login" replace />;
   }
 
-  // If authenticated, render the child routes (your admin panel)
+  // This will now always render your admin panel pages
   return <Outlet />;
 };
 
