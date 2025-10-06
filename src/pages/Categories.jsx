@@ -3,10 +3,11 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import {
-  getCategoryStats,
-  getFullCategories,
-} from "../services/mockApiService";
+// import {
+//   getCategoryStats,
+//   getFullCategories,
+// } from "../services/mockApiService";
+import { getAllCategories } from "../services/apiService";
 
 import CategoryStatCard from "../components/categories/CategoryStatCard";
 import QuickAddCategory from "../components/categories/QuickAddCategory";

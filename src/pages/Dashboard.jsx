@@ -28,18 +28,17 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 2. REPLACE the mock call with the real API call for stats
         const [statsResponse, meetups, categories, distribution] =
           await Promise.all([
-            getDashboardStats(), // <-- This is now the REAL API call
+            getDashboardStats(),
             getDailyMeetups(),
             getTrendingCategories(),
             getUserDistribution(),
           ]);
 
-        setStats(statsResponse.data); // Axios puts the response data in a 'data' property
-        setMeetupsData(meetups);
-        setCategoriesData(categories);
+        setStats(statsResponse.data.data); // ✅ use .data.data to reach actual stats
+        setChartData(meetups);
+        setCategories(categories);
         setDistributionData(distribution);
       } catch (error) {
         console.error("Failed to fetch dashboard data", error);
@@ -77,29 +76,29 @@ const Dashboard = () => {
         <StatCard
           title="Active Users Today"
           value={formatValue(stats.totalUsers)}
-          trend={stats.activeUsers.trend}
-          trendDirection={stats.activeUsers.trend >= 0 ? "up" : "down"}
+          // trend={stats.activeUsers.trend}
+          // trendDirection={stats.activeUsers.trend >= 0 ? "up" : "down"}
           icon={<PeopleAltOutlinedIcon />}
         />
         <StatCard
           title="Total Meet-Ups Scheduled"
           value={formatValue(stats.activeUsers)}
-          trend={stats.meetupsScheduled.trend}
-          trendDirection={stats.meetupsScheduled.trend >= 0 ? "up" : "down"}
+          // trend={stats.meetupsScheduled.trend}
+          // trendDirection={stats.meetupsScheduled.trend >= 0 ? "up" : "down"}
           icon={<EventAvailableOutlinedIcon />}
         />
         <StatCard
           title="Revenue This Week"
           value={`₹${formatValue(stats.revenue)}`}
-          trend={stats.revenue.trend}
-          trendDirection={stats.revenue.trend >= 0 ? "up" : "down"}
+          // trend={stats.revenue.trend}
+          // trendDirection={stats.revenue.trend >= 0 ? "up" : "down"}
           icon={<MonetizationOnOutlinedIcon />}
         />
         <StatCard
           title="Referrals This Week"
           value={formatValue(stats.REFERRAL_REWARD_AMOUNT)}
-          trend={stats.referrals.trend}
-          trendDirection={stats.referrals.trend >= 0 ? "up" : "down"}
+          // trend={stats.referrals.trend}
+          // trendDirection={stats.referrals.trend >= 0 ? "up" : "down"}
           icon={<HowToRegOutlinedIcon />}
         />
       </div>

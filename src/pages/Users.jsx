@@ -29,7 +29,7 @@ const Users = () => {
     const fetchUsers = async () => {
       try {
         const response = await getAllUsers();
-        setUsers(response.data);
+        setUsers(response.data.data || response.data);
       } catch (error) {
         console.error("Failed to fetch users", error);
       } finally {
