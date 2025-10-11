@@ -19,6 +19,7 @@ import CategoryIcon from "@mui/icons-material/Category";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+import AnnouncementIcon from '@mui/icons-material/Announcement';
 import ReportIcon from "@mui/icons-material/Report";
 import SettingsIcon from "@mui/icons-material/Settings";
 
@@ -35,6 +36,7 @@ const navItems = [
   { text: "Notifications", icon: <NotificationsIcon />, path: "/notifications" },
   { text: "Wallet", icon: <AccountBalanceWalletIcon />, path: "/wallet" },
   { text: "Analytics", icon: <AssessmentIcon />, path: "/analytics" },
+  { text: "Banner", icon: <AnnouncementIcon />, path: "/banner" },
   { text: "Reports", icon: <ReportIcon />, path: "/reports" },
   { text: "Settings", icon: <SettingsIcon />, path: "/settings" },
 ];

@@ -13,6 +13,7 @@ import Categories from "./pages/Categories";
 import Notifications from "./pages/Notifications";
 import Wallet from "./pages/Wallet";
 import Analytics from "./pages/Analytics";
+import Banner from "./pages/Banner";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 
@@ -37,6 +38,7 @@ function App() {
             <Route path="notifications" element={<Notifications />} />
             <Route path="wallet" element={<Wallet />} />
             <Route path="analytics" element={<Analytics />} />
+            <Route path="banner" element={<Banner />} />
             <Route path="reports" element={<Reports />} />
             <Route path="settings" element={<Settings />} />
           </Route>

@@ -1,16 +1,31 @@
-import React from "react";
+// src/components/categories/QuickAddCategory.jsx
+import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
+import { createCategory } from "../../services/apiService";
 
-const templates = [
-  { name: "Gaming", desc: "Video games & esports", icon: "🎮" },
-  { name: "Fitness", desc: "Workouts & health", icon: "💪" },
-  { name: "Music", desc: "Concerts & jam sessions", icon: "🎵" },
-  { name: "Art & Craft", desc: "Creative workshops", icon: "🎨" },
-  { name: "Tech", desc: "Coding & startups", icon: "💻" },
-  { name: "Cooking", desc: "Cooking & recipes", icon: "🍳" },
-];
+const QuickAddCategory = ({ show, onToggle, onCategoryAdded }) => {
+  const [name, setName] = useState("");
+  const [icon, setIcon] = useState("");
+  const [description, setDescription] = useState("");
 
-const QuickAddCategory = ({ show, onToggle }) => {
+  const handleAdd = async () => {
+    if (!name) {
+      alert("Please enter a category name");
+      return;
+    }
+    try {
+      await createCategory({ name, icon, description });
+      alert("✅ Category added successfully");
+      setName("");
+      setIcon("");
+      setDescription("");
+      onCategoryAdded && onCategoryAdded();
+    } catch (err) {
+      console.error("Failed to create category", err);
+      alert("❌ Failed to create category");
+    }
+  };
+
   if (!show) return null;
 
   return (
@@ -19,7 +34,12 @@ const QuickAddCategory = ({ show, onToggle }) => {
         <h3 className="tw-text-xl tw-font-semibold">
           🚀 Quick Add New Category
         </h3>
-        <Button variant="outlined" color="inherit" onClick={onToggle} sx={{backgroundColor: "#16a34a", color: "white", border: "none"}}>
+        <Button
+          variant="outlined"
+          color="inherit"
+          onClick={onToggle}
+          sx={{ backgroundColor: "#16a34a", color: "white", border: "none" }}
+        >
           Toggle Quick Add
         </Button>
       </div>
@@ -28,25 +48,53 @@ const QuickAddCategory = ({ show, onToggle }) => {
         <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-4">
           <TextField
             label="Category Name *"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             variant="filled"
             sx={{ bgcolor: "rgba(255,255,255,0.1)", borderRadius: 1 }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
           />
           <TextField
             label="Icon/Emoji"
+            value={icon}
+            onChange={(e) => setIcon(e.target.value)}
             variant="filled"
             sx={{ bgcolor: "rgba(255,255,255,0.1)", borderRadius: 1 }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
           />
           <TextField
             label="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             variant="filled"
             sx={{ bgcolor: "rgba(255,255,255,0.1)", borderRadius: 1 }}
+            InputLabelProps={{
+              style: { color: "white" },
+            }}
           />
         </div>
         <div className="tw-grid tw-grid-rows-3 tw-gap-2">
-          <Button variant="contained" color="inherit" sx={{ color: "black" }}>
+          <Button
+            variant="contained"
+            color="inherit"
+            sx={{ color: "black" }}
+            onClick={handleAdd}
+          >
             Add Category
           </Button>
-          <Button variant="outlined" color="inherit">
+          <Button
+            variant="outlined"
+            color="inherit"
+            onClick={() => {
+              setName("");
+              setIcon("");
+              setDescription("");
+            }}
+          >
             Clear
           </Button>
           <Button variant="outlined" color="inherit">
@@ -54,23 +102,8 @@ const QuickAddCategory = ({ show, onToggle }) => {
           </Button>
         </div>
       </div>
-
-      <h4 className="tw-font-semibold tw-mt-6 tw-mb-3">
-        🏛️ Popular Category Templates
-      </h4>
-      <div className="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-6 tw-gap-4">
-        {templates.map((t) => (
-          <div
-            key={t.name}
-            className="tw-bg-white/20 hover:tw-bg-white/30 tw-p-4 tw-rounded-lg tw-text-center tw-cursor-pointer"
-          >
-            <div className="tw-text-3xl">{t.icon}</div>
-            <div className="tw-font-bold tw-mt-2">{t.name}</div>
-            <div className="tw-text-xs tw-text-gray-200">{t.desc}</div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
+
 export default QuickAddCategory;

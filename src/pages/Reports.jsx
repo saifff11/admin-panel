@@ -1,7 +1,7 @@
+// src/pages/Reports.jsx
 import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
-import { getReportStats, getUserReports } from "../services/mockApiService";
-
+import { getAllReports } from "../services/apiService";
 import ReportStatCard from "../components/reports/ReportStatCard";
 import QuickActions from "../components/reports/QuickActions";
 import ReportsTable from "../components/reports/ReportsTable";
@@ -13,22 +13,53 @@ const Reports = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchReports = async () => {
       setLoading(true);
       try {
-        const [statsData, reportsData] = await Promise.all([
-          getReportStats(),
-          getUserReports(),
-        ]);
-        setStats(statsData);
-        setReports(reportsData);
+        const res = await getAllReports();
+        const apiData = res.data.data || res.data;
+
+        // Normalize response to match your table structure
+        const formattedReports = apiData.map((r) => ({
+          id: r._id,
+          reportedBy: r.reporter?.name || "N/A",
+          reportedUser: r.reported?.name || "N/A",
+          type: r.reportType || "OTHER",
+          priority: r.priority || "LOW",
+          date: r.createdAt,
+          status: r.status || "NEW",
+        }));
+
+        setReports(formattedReports);
+
+        // Compute stats on frontend
+        const totalNew = formattedReports.filter(
+          (r) => r.status === "NEW"
+        ).length;
+        const totalProgress = formattedReports.filter(
+          (r) => r.status === "IN PROGRESS"
+        ).length;
+        const totalResolved = formattedReports.filter(
+          (r) => r.status === "RESOLVED"
+        ).length;
+        const totalFalse = formattedReports.filter(
+          (r) => r.status === "DISMISSED"
+        ).length;
+
+        setStats({
+          newReports: { value: totalNew, trend: 0 },
+          inProgress: { value: totalProgress, trend: 0 },
+          resolvedToday: { value: totalResolved, trend: 0 },
+          falseReports: { value: totalFalse, trend: 0 },
+        });
       } catch (err) {
-        console.error("Failed to fetch reports data", err);
+        console.error("Failed to fetch reports", err);
       } finally {
         setLoading(false);
       }
     };
-    fetchData();
+
+    fetchReports();
   }, []);
 
   return (
@@ -67,7 +98,7 @@ const Reports = () => {
       {/* Reports Table */}
       <ReportsTable reports={reports} loading={loading} />
 
-      {/* Final Row */}
+      {/* Breakdown */}
       <ReportBreakdown />
     </div>
   );
