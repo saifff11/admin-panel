@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
 import {
   getNotificationTemplates,
   getRecentNotifications,
@@ -34,17 +33,22 @@ const Notifications = () => {
   }, []);
 
   return (
-    <div className="tw-space-y-6">
+    <div className=" tw-px-2 tw-py-2 tw-space-y-6">
       <SendNotificationForm />
 
       <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-6">
         {loading ? (
-          <Typography>Loading...</Typography>
+          <div className="tw-bg-white tw-p-8 tw-rounded-2xl tw-border tw-border-gray-100 tw-shadow-sm">
+            <p className="tw-text-gray-500">Loading templates...</p>
+          </div>
         ) : (
           <NotificationTemplates templates={templates} />
         )}
+
         {loading ? (
-          <Typography>Loading...</Typography>
+          <div className="tw-bg-white tw-p-8 tw-rounded-2xl tw-border tw-border-gray-100 tw-shadow-sm">
+            <p className="tw-text-gray-500">Loading notifications...</p>
+          </div>
         ) : (
           <RecentNotifications notifications={recent} />
         )}

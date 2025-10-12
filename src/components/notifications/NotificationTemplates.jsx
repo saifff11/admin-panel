@@ -1,32 +1,40 @@
 import React from "react";
-import { Typography, Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 
 const NotificationTemplates = ({ templates }) => {
   return (
-    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-      <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
-        <Typography variant="h6" className="!tw-font-bold">
+    <div className="tw-bg-white tw-rounded-2xl tw-border tw-border-gray-200 tw-shadow-sm tw-p-6 tw-h-full tw-flex tw-flex-col">
+      <div className="tw-flex tw-items-center tw-justify-between tw-mb-4">
+        <h3 className="tw-text-lg tw-font-semibold tw-text-gray-800">
           Notification Templates
-        </Typography>
-        <Button sx={{ backgroundColor: "#16a34a" }} variant="contained" size="small" startIcon={<AddIcon />}>
-          New Template
-        </Button>
+        </h3>
+
+        <button className="tw-inline-flex tw-items-center tw-gap-2 tw-bg-green-600 hover:tw-bg-green-700 tw-text-white tw-text-sm tw-font-medium tw-px-3 tw-py-2 tw-rounded-lg tw-transition">
+          +
+          <span>New Template</span>
+        </button>
       </div>
-      <div className="tw-space-y-3">
-        {templates.map((template) => (
-          <div
-            key={template.id}
-            className="tw-flex tw-justify-between tw-items-center"
-          >
-            <Typography>{template.name}</Typography>
-            <Button variant="outlined" sx={{ borderColor: "#16a34a", color: "#16a34a" }} size="small">
-              Use
-            </Button>
-          </div>
-        ))}
+
+      <div className="tw-flex-1 tw-space-y-3 tw-overflow-hidden">
+        {templates.length === 0 ? (
+          <p className="tw-text-gray-500">No templates yet.</p>
+        ) : (
+          templates.map((template) => (
+            <div
+              key={template.id}
+              className="tw-flex tw-items-center tw-justify-between tw-py-3 tw-border-b tw-border-gray-100"
+            >
+              <p className="tw-text-gray-800 tw-font-medium tw-truncate">
+                {template.name}
+              </p>
+              <button className="tw-ml-4 tw-inline-flex tw-items-center tw-px-3 tw-py-1.5 tw-border tw-border-green-600 tw-text-green-600 tw-rounded-lg tw-text-sm hover:tw-bg-green-50 tw-transition">
+                Use
+              </button>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
 };
+
 export default NotificationTemplates;

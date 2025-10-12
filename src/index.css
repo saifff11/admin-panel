@@ -10,6 +10,11 @@ body,
   padding: 0;
 }
 
+[class^="tw-"],
+[class*=" tw-"] {
+  box-sizing: border-box;
+}
+
 :root {
   --color-background: #f8f9fa; /* Light page background */
   --color-sidebar: #1a212f;      /* Dark sidebar */

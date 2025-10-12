@@ -13,7 +13,10 @@ const CategoryStatCard = ({ title, value, subtitle }) => {
       <Typography variant="h4" className="!tw-font-bold !tw-mt-2">
         {value}
       </Typography>
-      <Typography variant="body2" className="!tw-text-gray-500 !tw-mt-1 !tw-text-green-600">
+      <Typography
+        variant="body2"
+        className="!tw-text-gray-500 !tw-mt-1 !tw-text-green-600"
+      >
         {subtitle}
       </Typography>
     </div>

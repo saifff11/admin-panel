@@ -1,14 +1,4 @@
-// src/components/notifications/SendNotificationForm.jsx
 import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-} from "@mui/material";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import {
   sendNotificationToAll,
   sendNotificationToUser,
@@ -21,24 +11,23 @@ const SendNotificationForm = () => {
   const [target, setTarget] = useState("all");
   const [channel, setChannel] = useState("app");
   const [priority, setPriority] = useState("normal");
-  const [userIds, setUserIds] = useState(""); // for specific / bulk users
+  const [userIds, setUserIds] = useState("");
+  const [schedule, setSchedule] = useState("");
 
   const handleSend = async () => {
     try {
-      const payload = { title, body };
+      const payload = { title, body, channel, priority, schedule };
 
       if (target === "all") {
         await sendNotificationToAll(payload);
         alert("✅ Notification sent to all users");
       } else if (target === "user") {
-        if (!userIds) {
-          alert("Please enter user ID");
-          return;
-        }
+        if (!userIds) return alert("❌ Please enter user ID");
         await sendNotificationToUser(userIds, payload);
         alert(`✅ Notification sent to ${userIds}`);
       } else if (target === "segment") {
-        const idsArray = userIds.split(",").map((id) => id.trim());
+        const idsArray = userIds.split(",").map((id) => id.trim()).filter(Boolean);
+        if (!idsArray.length) return alert("❌ Please enter at least one user ID");
         await sendBulkNotification({ userIds: idsArray, ...payload });
         alert(`✅ Bulk notification sent to ${idsArray.length} users`);
       }
@@ -49,110 +38,138 @@ const SendNotificationForm = () => {
   };
 
   return (
-    <div className="tw-bg-white tw-p-6 tw-rounded-xl tw-border tw-border-gray-200 tw-shadow-sm">
-      <h2 className="tw-text-xl tw-font-bold tw-mb-4">
+    <div className="tw-bg-white tw-rounded-2xl tw-border tw-border-gray-200 tw-shadow-sm tw-p-6">
+      <h2 className="tw-text-2xl tw-font-semibold tw-mb-4">
         Send Push Notification
       </h2>
+
       <div className="tw-space-y-4">
-        <TextField
-          label="Notification Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter notification title"
-          fullWidth
-        />
-        <TextField
-          label="Message Content"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          placeholder="Enter your message here..."
-          fullWidth
-          multiline
-          rows={4}
-        />
-        <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-4">
-          <FormControl fullWidth>
-            <InputLabel>Send To</InputLabel>
-            <Select
-              value={target}
-              label="Send To"
-              onChange={(e) => setTarget(e.target.value)}
-            >
-              <MenuItem value="all">All Users</MenuItem>
-              <MenuItem value="segment">Specific Segment</MenuItem>
-              <MenuItem value="user">Single User</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel>Channel</InputLabel>
-            <Select
-              value={channel}
-              onChange={(e) => setChannel(e.target.value)}
-            >
-              <MenuItem value="app">App Notification</MenuItem>
-              <MenuItem value="email">Email</MenuItem>
-              <MenuItem value="sms">SMS</MenuItem>
-            </Select>
-          </FormControl>
+        {/* Title */}
+        <div>
+          <label className="tw-block tw-text-sm tw-text-gray-600 tw-mb-2">
+            Notification Title
+          </label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter notification title"
+            className="tw-w-full tw-rounded-xl tw-border tw-border-gray-200 tw-px-4 tw-py-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-green-400 tw-transition"
+          />
         </div>
 
-        {(target === "user" || target === "segment") && (
-          <TextField
-            label={
-              target === "user"
-                ? "User ID"
-                : "User IDs (comma separated for multiple)"
-            }
-            placeholder={
-              target === "user" ? "e.g. u123" : "e.g. u123, u124, u125"
-            }
-            value={userIds}
-            onChange={(e) => setUserIds(e.target.value)}
-            fullWidth
+        {/* Message */}
+        <div>
+          <label className="tw-block tw-text-sm tw-text-gray-600 tw-mb-2">
+            Message Content
+          </label>
+          <textarea
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            placeholder="Enter your message here..."
+            rows={4}
+            className="tw-w-full tw-rounded-xl tw-border tw-border-gray-200 tw-px-4 tw-py-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-green-400 tw-transition tw-resize-none"
           />
+        </div>
+
+        {/* Two-column selects */}
+        <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-4">
+          <div>
+            <label className="tw-block tw-text-sm tw-text-gray-600 tw-mb-2">
+              Send To
+            </label>
+            <select
+              value={target}
+              onChange={(e) => setTarget(e.target.value)}
+              className="tw-w-full tw-rounded-xl tw-border tw-border-gray-200 tw-px-4 tw-py-3 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-green-400"
+            >
+              <option value="all">All Users</option>
+              <option value="segment">Specific Segment</option>
+              <option value="user">Single User</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="tw-block tw-text-sm tw-text-gray-600 tw-mb-2">
+              Channel
+            </label>
+            <select
+              value={channel}
+              onChange={(e) => setChannel(e.target.value)}
+              className="tw-w-full tw-rounded-xl tw-border tw-border-gray-200 tw-px-4 tw-py-3 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-green-400"
+            >
+              <option value="app">App Notification</option>
+              <option value="email">Email</option>
+              <option value="sms">SMS</option>
+            </select>
+          </div>
+        </div>
+
+        {/* user ids */}
+        {(target === "user" || target === "segment") && (
+          <div>
+            <label className="tw-block tw-text-sm tw-text-gray-600 tw-mb-2">
+              {target === "user"
+                ? "User ID"
+                : "User IDs (comma separated)"}
+            </label>
+            <input
+              type="text"
+              value={userIds}
+              onChange={(e) => setUserIds(e.target.value)}
+              placeholder={
+                target === "user" ? "e.g. u123" : "e.g. u123, u124"
+              }
+              className="tw-w-full tw-rounded-xl tw-border tw-border-gray-200 tw-px-4 tw-py-3 tw-placeholder-gray-400 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-green-400"
+            />
+          </div>
         )}
 
-        <TextField
-          label="Schedule Notification (Optional)"
-          placeholder="dd-mm-yyyy --:--"
-          fullWidth
-          InputProps={{
-            endAdornment: <CalendarTodayIcon className="tw-cursor-pointer" />,
-          }}
-        />
+        {/* Scheduler + priority */}
+        <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-4 tw-items-end">
+          <div>
+            <label className="tw-block tw-text-sm tw-text-gray-600 tw-mb-2">
+              Schedule Notification (Optional)
+            </label>
+            <input
+              type="datetime-local"
+              value={schedule}
+              onChange={(e) => setSchedule(e.target.value)}
+              className="tw-w-full tw-rounded-xl tw-border tw-border-gray-200 tw-px-4 tw-py-3 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-green-400"
+            />
+          </div>
 
-        <FormControl fullWidth>
-          <InputLabel>Priority Level</InputLabel>
-          <Select
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
-            label="Priority Level"
-          >
-            <MenuItem value="normal">Normal</MenuItem>
-            <MenuItem value="high">High</MenuItem>
-          </Select>
-        </FormControl>
+          <div>
+            <label className="tw-block tw-text-sm tw-text-gray-600 tw-mb-2">
+              Priority Level
+            </label>
+            <select
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+              className="tw-w-full tw-rounded-xl tw-border tw-border-gray-200 tw-px-4 tw-py-3 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-green-400"
+            >
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
 
-        <div className="tw-flex tw-gap-4">
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#16a34a" }}
+        {/* action buttons */}
+        <div className="tw-flex tw-flex-wrap tw-items-center tw-gap-3 tw-pt-2">
+          <button
             onClick={handleSend}
+            className="tw-inline-flex tw-items-center tw-justify-center tw-bg-green-600 hover:tw-bg-green-700 tw-text-white tw-font-semibold tw-px-5 tw-py-2 tw-rounded-lg tw-shadow-sm tw-transition"
           >
             Send Now
-          </Button>
-          <Button
-            variant="outlined"
-            sx={{ borderColor: "#16a34a", color: "#16a34a" }}
-          >
+          </button>
+
+          <button className="tw-inline-flex tw-items-center tw-justify-center tw-border tw-border-gray-200 tw-text-gray-700 tw-bg-white tw-px-4 tw-py-2 tw-rounded-lg hover:tw-bg-gray-50 tw-transition">
             Schedule
-          </Button>
-          <Button
-            variant="outlined"
-            sx={{ borderColor: "#16a34a", color: "#16a34a" }}
-          >
+          </button>
+
+          <button className="tw-inline-flex tw-items-center tw-justify-center tw-border tw-border-gray-200 tw-text-gray-700 tw-bg-white tw-px-4 tw-py-2 tw-rounded-lg hover:tw-bg-gray-50 tw-transition">
             Save as Template
-          </Button>
+          </button>
         </div>
       </div>
     </div>
