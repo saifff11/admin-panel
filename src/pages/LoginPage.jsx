@@ -85,7 +85,7 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="tw-w-[425px] tw-py-3 tw-font-bold tw-text-white tw-rounded-md tw-bg-gradient-to-r tw-from-purple-600 tw-to-indigo-500"
+              className="tw-w-full tw-box-border tw-py-3 tw-font-bold tw-text-white tw-rounded-md tw-bg-gradient-to-r tw-from-purple-600 tw-to-indigo-500"
             >
               {loading ? "Sending OTP..." : "Send OTP"}
             </button>
@@ -113,7 +113,7 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="tw-w-[425px] tw-py-3 tw-font-bold tw-text-white tw-rounded-md tw-bg-gradient-to-r tw-from-purple-600 tw-to-indigo-500"
+              className="tw-w-full tw-box-border tw-py-3 tw-font-bold tw-text-white tw-rounded-md tw-bg-gradient-to-r tw-from-purple-600 tw-to-indigo-500"
             >
               {loading ? "Verifying..." : "Verify & Login"}
             </button>

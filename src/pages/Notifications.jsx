@@ -33,7 +33,7 @@ const Notifications = () => {
   }, []);
 
   return (
-    <div className=" tw-px-2 tw-py-2 tw-space-y-6">
+    <div className="tw-mx-auto tw-px-2 tw-py-2 tw-space-y-6">
       <SendNotificationForm />
 
       <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-6">
