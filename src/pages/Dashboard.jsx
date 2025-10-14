@@ -82,21 +82,21 @@ const Dashboard = () => {
         />
         <StatCard
           title="Total Meet-Ups Scheduled"
-          value={formatValue(stats.activeUsers)}
+          value={formatValue(stats.totalMeetups)}
           // trend={stats.meetupsScheduled.trend}
           // trendDirection={stats.meetupsScheduled.trend >= 0 ? "up" : "down"}
           icon={<EventAvailableOutlinedIcon />}
         />
         <StatCard
           title="Revenue This Week"
-          value={`₹${formatValue(stats.revenue)}`}
+          value={`₹${formatValue(stats.totalSuccessfulTransactions)}`}
           // trend={stats.revenue.trend}
           // trendDirection={stats.revenue.trend >= 0 ? "up" : "down"}
           icon={<MonetizationOnOutlinedIcon />}
         />
         <StatCard
           title="Referrals This Week"
-          value={formatValue(stats.REFERRAL_REWARD_AMOUNT)}
+          value={formatValue(stats.meetupsInLast7Days)}
           // trend={stats.referrals.trend}
           // trendDirection={stats.referrals.trend >= 0 ? "up" : "down"}
           icon={<HowToRegOutlinedIcon />}

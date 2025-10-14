@@ -21,7 +21,7 @@ const Reports = () => {
 
         // Normalize response to match your table structure
         const formattedReports = apiData.map((r) => ({
-          id: r._id,
+          id: r.reporter?.id,
           reportedBy: r.reporter?.name || "N/A",
           reportedUser: r.reported?.name || "N/A",
           type: r.reportType || "OTHER",

@@ -76,7 +76,7 @@ const MeetupManagementCard = () => {
             New Meet-Up Scheduled: Check if new meet-up has been scheduled by
             Saif. Check Email
           </Typography>
-          <div className="tw-flex tw-items-center tw-justify-between tw-p-3 tw-bg-gray-100 tw-rounded-lg tw-cursor-not-allowed">
+          <div className="tw-flex tw-items-center tw-justify-between tw-p-3 tw-bg-gray-100 tw-rounded-lg">
             <span className="tw-text-gray-500">Reschedule</span>
             <CalendarTodayIcon className="tw-text-gray-500" />
           </div>
