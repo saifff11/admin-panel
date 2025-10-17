@@ -19,7 +19,7 @@ const Header = ({ handleDrawerToggle }) => {
     navigate("/login"); // Redirect to the login page
   };
   return (
-    <header className="tw-fixed tw-top-0 tw-left-0 lg:tw-left-[280px] tw-right-0 tw-z-50 tw-bg-gray-50 tw-p-3 tw-border-b tw-border-gray-200 tw-shadow-md">
+    <header className="tw-fixed tw-top-0 tw-left-0 lg:tw-left-[270px] tw-right-0 tw-z-50 tw-bg-gray-50 tw-p-3 tw-border-b tw-border-gray-200 tw-shadow-md">
       <div className="tw-flex tw-items-center">
         {/* Hamburger Icon for mobile */}
         <IconButton

@@ -17,14 +17,14 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="tw-flex tw-min-h-screen tw-bg-gray-100">
+    <div className="tw-flex tw-min-h-screen ">
       <Sidebar
         isMobileSidebarOpen={isMobileSidebarOpen}
         handleDrawerToggle={handleDrawerToggle}
       />
 
       <div
-        className={`tw-flex-1 tw-flex tw-flex-col`}
+        className={`tw-flex-1 tw-flex tw-flex-col tw-bg-gray-100`}
         style={{
           marginLeft: isDesktop ? sidebarWidth : 0,
           transition: "margin-left 0.5s ease",

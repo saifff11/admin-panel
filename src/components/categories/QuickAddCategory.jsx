@@ -1,8 +1,7 @@
+// src/components/categories/QuickAddCategory.jsx
 import React, { useState } from "react";
 import { TextField, Button, Typography } from "@mui/material";
-import axios from "axios";
-
-const API_BASE = "https://social-meetup-backend.onrender.com/api/v1/admin/categories";
+import { createCategory } from "../../services/apiService";
 
 const templates = [
   { name: "Gaming", desc: "Video games & esports", icon: "🎮" },
@@ -13,33 +12,51 @@ const templates = [
   { name: "Cooking", desc: "Cooking & recipes", icon: "🍳" },
 ];
 
-const QuickAddCategory = ({ onCategoryAdded }) => {
+const QuickAddCategory = ({ onAdd, onClose }) => {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
   const [description, setDescription] = useState("");
+  const [subcategories, setSubcategories] = useState(""); // comma-separated
   const [loading, setLoading] = useState(false);
 
   const handleAdd = async () => {
-    if (!name.trim()) {
-      alert("⚠️ Category name is required");
-      return;
-    }
+    if (!name.trim()) return alert("⚠️ Category name is required");
+
     try {
       setLoading(true);
-      const payload = { name, icon, description, subcategories: [] };
-      const res = await axios.post(API_BASE, payload);
-      if (res.data.success) {
+
+      const payload = {
+        name,
+        subcategories: subcategories
+          ? subcategories.split(",").map((s) => s.trim())
+          : [],
+      };
+
+      const res = await createCategory(payload);
+
+      if (res.data?.success) {
         alert("✅ Category added successfully");
-        onCategoryAdded(res.data.data);
+        if (onAdd) onAdd(res.data.data);
         setName("");
         setIcon("");
         setDescription("");
+        setSubcategories("");
+        if (onClose) onClose();
       } else {
+        console.error("Create failed:", res.data);
         alert("❌ Failed to create category");
       }
     } catch (err) {
-      console.error("Failed to create category", err);
-      alert("❌ Something went wrong");
+      // Only show error if it's not a successful response
+      console.error("Error creating category:", err);
+      // Check if error is AxiosError with response
+      if (err.response) {
+        alert(
+          `❌ Server Error: ${err.response.status} ${err.response.statusText}`
+        );
+      } else {
+        alert("❌ Something went wrong");
+      }
     } finally {
       setLoading(false);
     }
@@ -54,11 +71,22 @@ const QuickAddCategory = ({ onCategoryAdded }) => {
   return (
     <div className="tw-p-6 tw-rounded-xl tw-bg-gradient-to-br tw-from-purple-500 tw-to-indigo-600 tw-text-white">
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
-        <h3 className="tw-text-xl tw-font-semibold">🚀 Quick Add New Category</h3>
+        <h3 className="tw-text-xl tw-font-semibold">
+          🚀 Quick Add New Category
+        </h3>
+        {onClose && (
+          <Button
+            variant="outlined"
+            sx={{ borderColor: "white", color: "white" }}
+            onClick={onClose}
+          >
+            Close
+          </Button>
+        )}
       </div>
 
       <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-[3fr_1fr] tw-gap-4">
-        <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-4">
+        <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-4 tw-gap-4">
           <TextField
             label="Category Name *"
             value={name}
@@ -92,7 +120,19 @@ const QuickAddCategory = ({ onCategoryAdded }) => {
               label: { color: "white" },
             }}
           />
+          <TextField
+            label="Subcategories (comma separated)"
+            value={subcategories}
+            onChange={(e) => setSubcategories(e.target.value)}
+            variant="filled"
+            sx={{
+              bgcolor: "rgba(255,255,255,0.1)",
+              input: { color: "white" },
+              label: { color: "white" },
+            }}
+          />
         </div>
+
         <div className="tw-flex tw-flex-col tw-gap-2">
           <Button
             variant="contained"
@@ -109,6 +149,7 @@ const QuickAddCategory = ({ onCategoryAdded }) => {
               setName("");
               setIcon("");
               setDescription("");
+              setSubcategories("");
             }}
           >
             Clear
