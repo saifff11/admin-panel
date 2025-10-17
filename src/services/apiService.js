@@ -63,4 +63,15 @@ export const getSettings = () => api.get("/admin/settings");
 export const updateSettings = (payload) =>
   api.patch("/admin/settings", payload);
 
+// This function handles multipart/form-data for image uploads
+export const createBanner = (formData) =>
+  api.post("/admin/banners", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+export const deleteBanner = (bannerId) =>
+  api.delete(`/admin/banners/${bannerId}`);
+
 export default api;

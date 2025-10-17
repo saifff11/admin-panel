@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Typography, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { getBanners } from "../services/mockApiService";
+import { createBanner, deleteBanner } from "../services/apiService";
 
 import BannerCard from "../components/banners/BannerCard";
 import AddBannerModel from "../components/banners/AddBannerModel";
@@ -26,6 +27,20 @@ const Banners = () => {
     fetchData();
   }, []);
 
+  const handleDelete = async (bannerId) => {
+    // Add a confirmation before deleting
+    if (window.confirm("Are you sure you want to delete this banner?")) {
+      try {
+        await deleteBanner(bannerId);
+        // Refresh the list after deleting
+        fetchBanners();
+      } catch (error) {
+        console.error("Failed to delete banner:", error);
+        alert("Failed to delete banner.");
+      }
+    }
+  };
+
   const handleOpenModal = () => setModalOpen(true);
   const handleCloseModal = () => setModalOpen(false);
 
@@ -39,7 +54,7 @@ const Banners = () => {
           variant="contained"
           startIcon={<AddIcon />}
           onClick={handleOpenModal}
-          sx={{backgroundColor: "#16a34a"}}
+          sx={{ backgroundColor: "#16a34a" }}
         >
           Add Slider Image
         </Button>
@@ -51,7 +66,11 @@ const Banners = () => {
       ) : (
         <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6">
           {banners.map((banner) => (
-            <BannerCard key={banner.id} banner={banner} />
+            <BannerCard
+              key={banner.id}
+              banner={banner}
+              onDelete={() => handleDelete(banner.id)}
+            />
           ))}
         </div>
       )}

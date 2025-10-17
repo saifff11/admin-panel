@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-const BannerCard = ({ banner }) => {
+const BannerCard = ({ banner, onDelete }) => {
   const isActive = banner.status === "Active";
 
   return (
@@ -36,7 +36,9 @@ const BannerCard = ({ banner }) => {
             <IconButton size="small">
               <EditIcon />
             </IconButton>
-            <IconButton size="small">
+            <IconButton size="small" onClick={onDelete}>
+              {" "}
+              {/* Add onClick here */}
               <DeleteIcon color="error" />
             </IconButton>
           </div>
