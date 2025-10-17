@@ -35,7 +35,7 @@ const Header = ({ handleDrawerToggle }) => {
           <input
             type="text"
             placeholder="Search..."
-            className="tw-w-full tw-pl-10 tw-pr-3 tw-py-3 tw-rounded-lg tw-border tw-border-gray-300 focus:tw-ring-2 focus:tw-ring-blue-500 focus:tw-outline-none"
+            className="tw-w-full tw-pl-10 tw-pr-3 tw-py-3 tw-rounded-lg tw-border tw-border-gray-300 focus:tw-border-[#16a34a] focus:tw-ring-2 focus:tw-ring-[#16a34a] focus:tw-outline-none"
           />
           <SearchIcon className="tw-absolute tw-left-3 tw-top-1/2 -tw-translate-y-1/2 tw-text-gray-400" />
         </div>

@@ -300,3 +300,33 @@ export const getTeamMembers = async () => {
     },
   ];
 };
+
+export const getBanners = async () => {
+  await sleep(500);
+  return [
+    {
+      id: 1,
+      title: "Discount",
+      description:
+        'Health + Wealth = Happiness "Treatment depends on Care, not Care on Treatment" Offer ✅ "Up to 75% OFF ...',
+      imageUrl: null, // For the inactive example
+      status: "Inactive",
+    },
+    {
+      id: 2,
+      title: "Ambulance",
+      description:
+        '"Ambulance Service -- Coming Soon! Fast, safe & trusted emergency and non-emergency medical transport at yo...',
+      imageUrl: "https://i.imgur.com/example1.png", // Replace with a real image URL for testing
+      status: "Active",
+    },
+    {
+      id: 3,
+      title: "Nursing care",
+      description:
+        '"Professional at-home nursing support for recovery, elderly care, and post-hospital needs. Book trained nurs...',
+      imageUrl: "https://i.imgur.com/example2.png", // Replace with a real image URL for testing
+      status: "Active",
+    },
+  ];
+};
